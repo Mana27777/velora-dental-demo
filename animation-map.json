@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "project": "VÉLORA DENTAL",
+  "reference": "02-REFERENCIAS/PALMO-ANALISIS-INTERACCIONES.json",
+  "principles": [
+    "Producto central anclado, cambios de cara y profundidad, texto que alterna lateralmente.",
+    "Adaptación móvil propia: texto arriba, modelo dominante debajo, sin cruces.",
+    "Progreso continuo y reversible, sin bloqueo temporal del scroll de Palmo.",
+    "Los ángulos siguientes son decisiones propias para VÉLORA, no medidas de Palmo.",
+    "No separar geometría; materiales y proporciones originales."
+  ],
+  "units": {
+    "progress": "0–1 del tramo sticky",
+    "yaw": "grados acumulados respecto a la primera perspectiva",
+    "pitchRoll": "grados",
+    "fill": "fracción de alto visible buscada, limitada por encuadre",
+    "focus": "coordenadas del modelo normalizado a 2.3 unidades de alto",
+    "centerX": "fracción horizontal del viewport"
+  },
+  "timeline": [
+    {
+      "p": 0,
+      "yaw": 0,
+      "pitch": -8,
+      "roll": -9,
+      "fill": 0.64,
+      "desktopFill": 0.75,
+      "centerX": 0.6,
+      "focus": 0,
+      "elevation": 0.18,
+      "fov": 33,
+      "text": 0
+    },
+    {
+      "p": 0.08,
+      "yaw": 20,
+      "pitch": -4,
+      "roll": -5,
+      "fill": 0.67,
+      "desktopFill": 0.78,
+      "centerX": 0.6,
+      "focus": 0,
+      "elevation": 0.14,
+      "fov": 33,
+      "text": 0
+    },
+    {
+      "p": 0.2,
+      "yaw": 90,
+      "pitch": 14,
+      "roll": 10,
+      "fill": 0.66,
+      "desktopFill": 0.77,
+      "centerX": 0.41,
+      "focus": 0.04,
+      "elevation": 0.35,
+      "fov": 32,
+      "text": 1
+    },
+    {
+      "p": 0.4,
+      "yaw": 180,
+      "pitch": -12,
+      "roll": -8,
+      "fill": 0.68,
+      "desktopFill": 0.79,
+      "centerX": 0.6,
+      "focus": 0.1,
+      "elevation": 0.05,
+      "fov": 31,
+      "text": 2
+    },
+    {
+      "p": 0.6,
+      "yaw": 265,
+      "pitch": 10,
+      "roll": 7,
+      "fill": 0.75,
+      "desktopFill": 0.91,
+      "centerX": 0.49,
+      "focus": 0.45,
+      "elevation": 0.48,
+      "fov": 34,
+      "text": 3
+    },
+    {
+      "p": 0.8,
+      "yaw": 360,
+      "pitch": -9,
+      "roll": -8,
+      "fill": 0.66,
+      "desktopFill": 0.76,
+      "centerX": 0.41,
+      "focus": 0.04,
+      "elevation": 0.15,
+      "fov": 33,
+      "text": 4
+    },
+    {
+      "p": 1,
+      "yaw": 380,
+      "pitch": 4,
+      "roll": 4,
+      "fill": 0.53,
+      "desktopFill": 0.62,
+      "centerX": 0.58,
+      "focus": 0,
+      "elevation": 0.2,
+      "fov": 35,
+      "text": 5
+    }
+  ],
+  "text": {
+    "centers": [
+      0,
+      0.2,
+      0.4,
+      0.6,
+      0.8,
+      1
+    ],
+    "window": 0.095,
+    "gap": "Un único título activo; opacidad cero en el cambio de capítulo.",
+    "desktop": [
+      "izquierda",
+      "derecha",
+      "izquierda",
+      "izquierda + etiquetas",
+      "derecha",
+      "izquierda"
+    ],
+    "mobile": "Franja superior reservada; modelo desde ~30% del alto. Etiquetas mínimas sólo en detalle."
+  },
+  "video": {
+    "src": "03-ASSETS/VIDEOS/consultorio-scroll.mp4",
+    "progress": "Mismo destino normalizado 0–1; time=(duration-.05)*progress.",
+    "fallback": "Poster original ante fallo; playback silencioso si seek no progresa; movimiento reducido usa poster."
+  },
+  "manual": {
+    "mouse": "Yaw y pitch por arrastre; quaternion sin gimbal lock; inercia limitada.",
+    "touch": "Primer movimiento horizontal captura exploración; vertical permite pan-y. Una vez explorando también puede inclinar.",
+    "return": "Orientación narrativa congelada durante exploración; al retomar scroll mezcla suave hacia progreso actual y offset identidad."
+  },
+  "accessibility": {
+    "reducedMotion": "Recorrido estático con los seis textos visibles en flujo y modelo quieto manipulable.",
+    "webglFailure": "Texto en flujo y fotos visibles; scroll normal.",
+    "keyboard": "Flechas giran el producto; Home o botón icono restablecen."
+  }
+}

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 420" role="img" aria-labelledby="anatomy-title anatomy-desc">
+<title id="anatomy-title">Esquema educativo de una pieza ausente y su restauración ilustrativa</title>
+<desc id="anatomy-desc">Dos dientes vecinos, encía rosa y hueso. En el espacio central se pueden mostrar un implante, su conexión y una corona. No representa anatomía clínica exacta.</desc>
+<defs><pattern id="bone-lines" width="32" height="28" patternUnits="userSpaceOnUse"><path d="m4 18 9-8 12 5M13 10l-2-7" fill="none" stroke="#BCA38E" stroke-width="2" opacity=".45"/></pattern></defs>
+<path d="M48 217Q300 190 552 217V364Q300 409 48 364Z" fill="#DFCDB9"/>
+<path d="M48 217Q300 190 552 217V364Q300 409 48 364Z" fill="url(#bone-lines)"/>
+<path d="M48 208Q108 193 155 204T250 207Q300 192 350 207T445 204Q495 193 552 208V244Q300 220 48 244Z" fill="#DFA8B2" stroke="#B77E8B" stroke-width="2"/>
+<g fill="#FCF8EF" stroke="#A78D7B" stroke-width="3" stroke-linejoin="round">
+<path d="M116 178Q112 229 130 307Q137 330 146 299L160 243L174 299Q183 330 190 307Q208 229 204 178Z"/>
+<path d="M396 178Q392 229 410 307Q417 330 426 299L440 243L454 299Q463 330 470 307Q488 229 484 178Z"/>
+<path d="M111 113Q105 72 131 68Q150 63 160 73Q174 63 192 69Q216 76 208 117L201 184Q160 202 118 184Z"/>
+<path d="M391 113Q385 72 411 68Q430 63 440 73Q454 63 472 69Q496 76 488 117L481 184Q440 202 398 184Z"/>
+</g>
+<path class="anatomy-gap" d="M260 97Q300 78 340 97V182Q300 198 260 182Z" fill="none" stroke="#A67E6C" stroke-width="2" stroke-dasharray="5 7" opacity="var(--gap-opacity,0)"/>
+<g class="anatomy-implant" opacity="var(--implant-opacity,1)">
+<path d="M278 222H322L317 309Q300 340 283 309Z" fill="#9C9690" stroke="#635E59" stroke-width="3"/>
+<path d="m279 234 42 7m-41 7 40 7m-39 7 38 7m-37 7 36 7m-35 7 33 7m-31 7 27 4" fill="none" stroke="#E4DDD4" stroke-width="4"/>
+<path d="M286 222V197L293 187H307L314 197V222Z" fill="#BAB3A9" stroke="#635E59" stroke-width="3"/>
+</g>
+<path class="anatomy-crown" d="M253 118Q247 74 272 70Q290 64 300 74Q316 64 334 71Q357 78 348 121L340 184Q300 203 260 184Z" fill="#FFF9EE" stroke="#A78D7B" stroke-width="3" opacity="var(--crown-opacity,1)"/>
+<g fill="#77564A" font-family="sans-serif" font-size="15"><text x="75" y="39">Diente vecino</text><text x="415" y="39">Diente vecino</text><text x="52" y="274">Hueso</text><text x="490" y="186">Encía</text></g>
+<path d="M515 190v19M91 280v27" fill="none" stroke="#77564A" stroke-width="1.5"/>
+</svg>

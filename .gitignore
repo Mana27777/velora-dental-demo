@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+*.bak
+*.backup*
+*.log
+.DS_Store
+ETAPA-*.md
+FINAL-QA.md
+verify.cjs
+verify-stage0*.cjs
+public/images/*.png
