@@ -13,6 +13,10 @@ header .quick-nav{display:flex!important;gap:clamp(12px,3vw,28px);font-size:12px
 /* One transparent renderer follows the complete page; only its product-sized surface handles input. */
 .product{position:fixed!important;z-index:8!important}
 .product canvas{pointer-events:none!important}
+.product.loaded canvas{animation:product-breathe 8s ease-in-out infinite;will-change:transform}
+@keyframes product-breathe{0%,100%{transform:translate3d(0,0,0) rotate(-.18deg)}50%{transform:translate3d(0,-2px,0) rotate(.18deg)}}
+.exploring-3d .product canvas,body:has(dialog[open]) .product canvas{animation-play-state:paused}
+.static-story .product canvas{animation:none!important}
 .model-touch{position:fixed;z-index:9;cursor:grab;touch-action:pan-y pinch-zoom;border-radius:30px}
 .model-touch.exploring{touch-action:none;outline:1px dashed #77564a60;outline-offset:6px}
 .model-touch.dragging{cursor:grabbing}

@@ -28,7 +28,7 @@ document.body.append(container,touchSurface,modelTools);
 canvas.tabIndex=-1;canvas.setAttribute('aria-hidden','true');
 const depth=createDepth(document.querySelector('#contenido'),reduced);
 let exploreMode=false;
-function exploreModeSet(value){exploreMode=value;touchSurface.classList.toggle('exploring',value);exploreButton.setAttribute('aria-pressed',String(value));exploreButton.textContent=value?'Volver al scroll ↓':'Explorar 3D ↗';document.querySelector('.explore-hint').textContent=value?'Girá en cualquier dirección':'Arrastrá para girar';}
+function exploreModeSet(value){exploreMode=value;document.body.classList.toggle('exploring-3d',value);touchSurface.classList.toggle('exploring',value);exploreButton.setAttribute('aria-pressed',String(value));exploreButton.textContent=value?'Volver al scroll ↓':'Explorar 3D ↗';document.querySelector('.explore-hint').textContent=value?'Girá en cualquier dirección':'Arrastrá para girar';}
 const chapters=[...document.querySelectorAll('.chapter')],labels=document.querySelector('.component-labels');
 const counter=document.querySelector('.moment-counter'),track=document.querySelector('.progress-track span');
 const videoLayer=document.querySelector('.hero-video');
