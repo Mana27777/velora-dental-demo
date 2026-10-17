@@ -1,13 +1,13 @@
-// Mobile plays a muted loop; desktop has one seek in flight. Neither owns page scroll.
+// Scroll mode never falls back to autoplay. One seek at a time; poster on failure.
 export class ScrollVideo {
   constructor(video,background,reduced,{src=(import.meta.env?.BASE_URL??'/')+'media/consultorio-desktop.mp4',poster='',mobileSrc='',playbackMode='auto'}={}){
     this.mobile=globalThis.matchMedia?.('(max-width: 700px), (pointer: coarse)')??{matches:false};
     this.prefersPlayback=playbackMode==='playback'||(playbackMode==='auto'&&this.mobile.matches);
-    Object.assign(this,{video,background,reduced,src:this.prefersPlayback&&mobileSrc?mobileSrc:src,ready:false,frameReady:false,started:false,busy:false,target:0,visible:false,mode:'poster',lastSeek:0,blocked:false,disposed:false});
+    Object.assign(this,{video,background,reduced,strictScroll:playbackMode==='scrub',src:this.mobile.matches&&mobileSrc?mobileSrc:src,ready:false,frameReady:false,started:false,busy:false,target:0,visible:false,mode:'poster',lastSeek:0,blocked:false,disposed:false});
     this.abort=new AbortController();
     this.document=globalThis.document;
     if(poster)video.poster=poster;
-    video.muted=true;video.defaultMuted=true;video.playsInline=true;video.loop=true;
+    video.muted=true;video.defaultMuted=true;video.playsInline=true;video.loop=!this.strictScroll;
     const on=(target,event,fn,options={})=>target?.addEventListener?.(event,fn,{...options,signal:this.abort.signal});
     on(video,'loadedmetadata',()=>{
       this.ready=Number.isFinite(video.duration)&&video.duration>0;
@@ -28,7 +28,7 @@ export class ScrollVideo {
   canAnimate(){return !this.disposed&&this.visible&&!this.reduced.matches&&!this.document?.hidden;}
   refresh(){
     this.background.dataset.videoMode=this.blocked?'poster':this.mode;
-    this.background.dataset.videoPlayback=this.prefersPlayback?'mobile-loop':'desktop-scrub';
+    this.background.dataset.videoPlayback=this.prefersPlayback?'mobile-loop':this.mobile.matches?'mobile-scrub':'desktop-scrub';
     this.background.dataset.videoBlocked=String(this.blocked);
     const visible=this.frameReady&&this.canAnimate()&&this.mode!=='poster'&&!this.blocked;
     if(visible)this.background.classList.add('video-ready');else this.background.classList.remove('video-ready');
@@ -82,6 +82,7 @@ export class ScrollVideo {
     }catch{this.blocked=true;this.refresh();}
   }
   playback(){
+    if(this.strictScroll){this.poster();return;}
     this.cancelSeek();this.mode='playback';this.video.muted=true;
     this.playVisible();this.refresh();
   }

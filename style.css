@@ -10,6 +10,36 @@ nav{display:flex;gap:25px;font-weight:800;font-size:13px}nav a{display:flex;alig
 header .quick-nav{display:flex!important;gap:clamp(12px,3vw,28px);font-size:12px}
 .quick-nav a{min-width:44px;min-height:44px;text-underline-offset:5px}
 .quick-nav a:hover{text-decoration:underline}
+/* One transparent renderer follows the complete page; only its product-sized surface handles input. */
+.product{position:fixed!important;z-index:8!important}
+.product canvas{pointer-events:none!important}
+.model-touch{position:fixed;z-index:9;cursor:grab;touch-action:pan-y pinch-zoom;border-radius:30px}
+.model-touch.exploring{touch-action:none;outline:1px dashed #77564a60;outline-offset:6px}
+.model-touch.dragging{cursor:grabbing}
+.model-tools{position:fixed;z-index:10;right:20px;bottom:14px;display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.model-tools button{min-height:44px;padding:10px 15px;border:1px solid #77564a55;border-radius:24px;background:var(--cream);color:var(--ink);font-weight:900;cursor:pointer}
+.explore-hint{font-size:11px;color:var(--brown);background:var(--cream);padding:2px 6px;border-radius:8px}
+body:before{content:'';position:fixed;inset:0 0 auto;height:140px;background:var(--cream);border-bottom:1px solid #77564a20;z-index:7;transform:translateY(-102%);transition:transform .35s;pointer-events:none}
+body.following-model:before{transform:translateY(0)}
+.following-model .model-tools{top:92px;bottom:auto;left:14px;right:auto;align-items:flex-start}.following-model .explore-hint{display:none}
+#contenido section{scroll-margin-top:150px}
+.scroll-stage{height:calc(var(--scene-height) + 650svh)!important}
+.booking-days,.booking-times{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:12px 0 20px}.booking-times{grid-template-columns:repeat(3,minmax(0,1fr))}
+.booking-days button,.booking-times button{flex:1;min-width:78px;min-height:48px;border:1px solid #77564a66;background:transparent;border-radius:14px;color:var(--ink);padding:9px;cursor:pointer}
+.booking-days button[aria-pressed=true],.booking-times button[aria-pressed=true]{background:var(--brown);color:var(--cream)}
+.booking-choice h3{font-size:21px;margin:20px 0 8px}
+.booking-summary{background:var(--pink);padding:13px;border-radius:12px}
+#booking-confirm,#booking-restart{min-height:48px;border:0;border-radius:25px;padding:12px 20px;background:var(--ink);color:var(--cream);font-weight:900;cursor:pointer}
+#booking-confirm:disabled{opacity:.45;cursor:not-allowed}
+.booking-result{padding:18px;background:var(--pink);border-radius:16px}.booking-result h3{font-size:27px}.booking-result p{line-height:1.6}
+#mensaje-demo h2{font-size:32px;margin-bottom:18px}
+dialog[open]{animation:dialog-enter .24s ease-out}
+@keyframes dialog-enter{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
+.questions details[open] p{animation:answer-enter .3s ease-out}
+@keyframes answer-enter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.message-option{margin-top:22px;border-top:1px solid #77564a40}.message-option summary{font-size:13px;padding:16px 0}
+@media(min-width:701px){body:before{height:120px}#contenido section{scroll-margin-top:130px}.following-model .model-tools{top:40px;left:4vw}}
+.static-story .scroll-stage{height:auto!important}.static-story .product{position:relative!important;z-index:2!important}.static-story:before{display:none}.static-story .model-tools{display:none}
 @supports(height:100dvh){:root{--scene-height:100dvh}}
 .scroll-stage{height:500vh;height:calc(var(--scene-height) + 400svh)}.hero{position:sticky;top:0;height:var(--scene-height);min-height:0;overflow:hidden;isolation:isolate;background:var(--cream)}
 .hero-video{position:absolute;inset:0;z-index:0;pointer-events:none;background:url('/images/recepcion-velora.webp') center/cover}

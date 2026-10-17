@@ -13,9 +13,14 @@ export function anatomyProgress(top,height,viewportHeight,inset=16){
   return Math.max(0,Math.min(1,(viewportHeight-height-inset-top)/travel));
 }
 
+export function pinnedAnatomyProgress(top,height,stageHeight,offset){
+  return Math.max(0,Math.min(1,(offset-top)/Math.max(1,height-stageHeight)));
+}
+
 export function createAnatomy(root,reduced){
   const abort=new AbortController(),signal=abort.signal;
   const story=root.querySelector('.anatomy-story'),figure=root.querySelector('.anatomy-drawing');
+  const panel=root.querySelector('.anatomy-stage');
   const cards=[...root.querySelectorAll('.anatomy-caption')],buttons=[...root.querySelectorAll('[data-anatomy-state]')];
   const hint=root.querySelector('.anatomy-hint');
   figure.innerHTML=drawing;
@@ -42,7 +47,12 @@ export function createAnatomy(root,reduced){
   function request(){if(!frame&&!disposed){previous=performance.now();frame=requestAnimationFrame(tick);}}
   function sync(){
     const rect=story.getBoundingClientRect();
-    const next=anatomyProgress(rect.top,rect.height,viewportHeight);
+    const stageHeight=panel.offsetHeight,dock=innerWidth<=700?146:126;
+    const fits=stageHeight<innerHeight-dock-12;
+    story.classList.toggle('anatomy-unpinned',!fits);
+    const reserved=stageHeight+'px';
+    if(story.style.getPropertyValue('--anatomy-height')!==reserved)story.style.setProperty('--anatomy-height',reserved);
+    const next=reduced.matches?1:fits?pinnedAnatomyProgress(rect.top,story.offsetHeight,stageHeight,dock):null;
     root.dataset.anatomyScroll=next===null?'manual':'available';
     hint.textContent=next===null?'Elegí una etapa para explorar el esquema.':'Deslizá para descubrir o elegí una etapa.';
     if(manual)return;
@@ -67,7 +77,7 @@ export function createAnatomy(root,reduced){
       viewportWidth=innerWidth;viewportHeight=innerHeight;sync();
     }
   },{passive:true,signal});
-  const resize=new ResizeObserver(sync);resize.observe(story);
+  const resize=new ResizeObserver(sync);resize.observe(panel);
   function mode(){root.classList.toggle('anatomy-reduced',reduced.matches);manual=false;sync();}
   reduced.addEventListener('change',mode,{signal});
   root.classList.add('anatomy-enhanced');mode();render();

@@ -5,7 +5,10 @@
 
 .education.information{display:block;padding-bottom:0}
 .education-copy{max-width:850px;margin-bottom:30px}
-.anatomy-story{position:relative}
+.anatomy-story{position:relative;height:calc(var(--anatomy-height,600px) + 160svh)}
+.anatomy-stage{position:sticky;top:146px}
+.anatomy-unpinned,.anatomy-reduced .anatomy-story{height:auto}
+.anatomy-unpinned .anatomy-stage,.anatomy-reduced .anatomy-stage{position:relative;top:auto}
 .anatomy-stage{display:grid;align-items:center;gap:18px;padding:0 0 32px}
 .anatomy-figure{margin:0;min-width:0}
 .anatomy-drawing svg,.anatomy-drawing img{display:block;width:100%;height:auto;max-height:236px}
@@ -27,6 +30,7 @@
 .anatomy-reduced .anatomy-caption+.anatomy-caption{margin-top:28px}
 .anatomy-reduced .anatomy-hint{display:none}
 @media(min-width:701px){
+  .anatomy-stage{top:126px}
   .education-copy{margin-bottom:40px}
   .anatomy-stage{grid-template-columns:1.2fr 1fr;gap:6vw;padding-bottom:48px}
   .anatomy-drawing svg,.anatomy-drawing img{max-height:480px}

@@ -4,10 +4,10 @@ import {commercial} from './config.js';
 import {campaignFrom,createMeasurement} from './measurement.js';
 assert.equal(contactFrom(commercial).url,null);
 for(const number of ['', '+123','123 456','0000000','1234567890123456']){
- assert.equal(contactFrom({...commercial,mode:'REAL',numberAuthorized:true,whatsappNumber:number}).url,null);
+ assert.equal(contactFrom({...commercial,channel:'whatsapp',mode:'REAL',numberAuthorized:true,whatsappNumber:number}).url,null);
 }
 // Synthetic digits test formatting only; never opened or used as a recipient.
-const sample={...commercial,mode:'REAL',numberAuthorized:true,whatsappNumber:'12345678901'};
+const sample={...commercial,channel:'whatsapp',mode:'REAL',numberAuthorized:true,whatsappNumber:'12345678901'};
 assert.equal(contactFrom(sample).url,'https://wa.me/12345678901?text='+encodeURIComponent(sample.message));
 assert.equal(contactFrom({...sample,numberAuthorized:false}).url,null);
 assert.equal(contactFrom({...sample,mode:'DEMO'}).url,null);

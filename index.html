@@ -11,7 +11,7 @@
 <a class="skip" href="#contenido">Saltar recorrido 3D</a>
 <header>
 <a class="identity" href="#inicio" aria-label="Vélora Dental, inicio">VÉLORA<span>DENTAL</span></a>
-<nav class="quick-nav" aria-label="Acceso directo"><a href="#educacion">Conocer</a><a href="#consulta">Consultar ↗</a></nav>
+<nav class="quick-nav" aria-label="Acceso directo"><a href="#educacion">Conocer</a><a href="#consulta">Agendar ↗</a></nav>
 </header>
 <main>
 <div class="scroll-stage" id="inicio">
@@ -21,6 +21,8 @@
 <canvas tabindex="0" role="img" aria-label="Implante dental 3D. Arrastre para girar. Flechas del teclado para rotar; Inicio para restablecer."></canvas>
 <p class="load-status" role="status">Preparando el implante…</p>
 </div>
+<div class="model-touch" tabindex="0" role="img" aria-label="Explorar implante. Arrastrá horizontalmente para girar. Activá Explorar 3D para inclinarlo en cualquier dirección. Flechas para girar; Inicio para restablecer."></div>
+<div class="model-tools"><button id="explore-3d" type="button" aria-pressed="false">Explorar 3D ↗</button><span class="explore-hint">Arrastrá para girar</span></div>
 <div class="chapters">
 <article class="chapter active"><p class="service-label">Implantología dental</p><h1>Tu sonrisa puede<br>volver a sentirse<br><em>completa.</em></h1></article>
 <article class="chapter right"><h2>Cuando falta<br>una pieza, cambia<br><em>más de lo que parece.</em></h2></article>
@@ -68,13 +70,13 @@
 <details><summary>¿Qué debo preguntar sobre molestias y cuidados?</summary><p>Consultá qué molestias podrían aparecer, qué riesgos tiene la alternativa indicada y qué cuidados y controles necesitarías. Pedí indicaciones personalizadas y cómo contactar al profesional si surge una preocupación.</p></details>
 </div></section>
 <section class="information final-cta" id="consulta">
-<div class="meander" aria-hidden="true"></div><h2>No tenés que decidir<br>un tratamiento <em>hoy.</em></h2><p class="invitation">Podés empezar<br>haciendo una pregunta.</p>
+<div class="meander" aria-hidden="true"></div><h2>Tu próxima consulta<br><em>empieza acá.</em></h2><p class="invitation">Elegí cuándo<br>dar el primer paso.</p>
 <a class="cta" href="#mensaje-demo" aria-describedby="contact-state"><span class="cta-label">SOLICITAR VALORACIÓN POR WHATSAPP</span><span aria-hidden="true">↗</span></a><p class="contact-state" id="contact-state">Podés ver y copiar el mensaje antes de consultar. No se enviará automáticamente.</p>
 </section>
 </div>
 </main>
 <footer><a class="identity" href="#inicio">VÉLORA<span>DENTAL</span></a><nav aria-label="Pie de página"><a href="#educacion">Implantología</a><a href="#preguntas">Preguntas</a><a href="#consulta">Consultar</a></nav><p>VÉLORA DENTAL es una demostración conceptual. No brinda atención odontológica.</p></footer>
-<dialog id="mensaje-demo" aria-labelledby="demo-title"><button class="dialog-close" type="button" aria-label="Cerrar mensaje">×</button><h2 id="demo-title">Tu primera<br><em>pregunta.</em></h2><p>Vista previa del mensaje. Todavía no hay un número configurado: no se enviarán datos a terceros.</p><blockquote id="prepared-message"></blockquote><button id="copy-message" type="button">Copiar mensaje</button><p class="copy-status" role="status"></p></dialog>
+<dialog id="mensaje-demo" aria-labelledby="demo-title"><button class="dialog-close" type="button" aria-label="Cerrar mensaje">×</button><p class="eyebrow">AGENDA DE DEMOSTRACIÓN</p><h2 id="demo-title">Un primer paso.<br><em>Elegí tu momento.</em></h2><p>Explorá cómo sería agendar. Los horarios son ilustrativos: no se reserva una cita real ni se envían datos.</p><div class="booking-choice"><h3>1. Elegí un día</h3><div class="booking-days" role="group" aria-label="Días de demostración"></div><h3>2. Elegí un horario</h3><div class="booking-times" role="group" aria-label="Horarios de demostración"></div></div><p class="booking-summary" role="status">Elegí un día y un horario para continuar.</p><button id="booking-confirm" type="button" disabled>Revisar mi elección</button><div class="booking-result" hidden><h3>Así se vería tu elección.</h3><p class="booking-selection"></p><p>Simulación completada. No hay una reserva real. Para una clínica se conectará su agenda y confirmación autorizadas.</p><button id="booking-restart" type="button">Elegir otro horario</button></div><details class="message-option"><summary>Ver un ejemplo de consulta</summary><blockquote id="prepared-message"></blockquote><button id="copy-message" type="button">Copiar mensaje</button><p class="copy-status" role="status"></p></details></dialog>
 <script type="module" src="/main.js"></script>
 </body></html>
 
