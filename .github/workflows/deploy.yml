@@ -19,6 +19,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: node verify-stage18.mjs
+      - run: node verify-stage16.mjs
       - run: node verify-stage20.mjs
       - run: node verify-scroll-video-stage20.mjs
       - run: npm run build

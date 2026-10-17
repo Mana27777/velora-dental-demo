@@ -1,4 +1,4 @@
-.identity span,header nav,header .mobile-links,#reset-view,.story-bottom{display:none!important}
+.identity span,header .mobile-links,#reset-view,.story-bottom{display:none!important}
 .component-arrows{position:absolute;inset:0;width:100%;height:100%;overflow:visible;color:var(--brown)}
 .component-arrows>path{fill:none;stroke:currentColor;stroke-width:1.5;marker-end:url(#component-arrow)}
 .component-labels span{background:var(--cream);font-size:12px}

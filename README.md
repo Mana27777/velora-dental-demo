@@ -1,5 +1,7 @@
 # VÉLORA
 
+Edición premium: acceso directo a información y consulta, ocho FAQ, esquema SVG con materiales ilustrativos y un único contacto final configurable (WhatsApp o agenda HTTPS autorizada). Sin analítica externa ni datos médicos. La configuración permanece en modo demo.
+
 Demostración conceptual de una landing odontológica interactiva. No representa una clínica real, no brinda atención odontológica ni confirma reservas.
 
 ## Desarrollo

@@ -7,13 +7,16 @@ import { commercial, whatsappMessage, clinicInformation, clinicVideo } from './c
 import { contactFrom } from './contact.js';
 import { ScrollVideo } from './scroll-video.js';
 import { poseAt, chapterAt, clamp, narrativeProgress } from './motion.js';
-import { createMeasurement } from './measurement.js';
+import { createMeasurement, observeLabPerformance } from './measurement.js';
 
 const abort=new AbortController();
 const on=(el,event,fn,options={})=>el.addEventListener(event,fn,{...options,signal:abort.signal});
 const params=new URLSearchParams(location.search);
 const qa=import.meta.env.DEV&&params.has('qa');
+const stopLab=qa?observeLabPerformance(document.documentElement):()=>{};
 const measure=createMeasurement();
+measure('page_view');
+on(document.querySelector('.anatomy-controls'),'click',()=>measure('education_interaction'));
 if(qa)on(window,'velora:measurement',e=>{document.documentElement.dataset.lastMeasurement=JSON.stringify(e.detail);});
 const systemReduced=matchMedia('(prefers-reduced-motion: reduce)');
 const reduced=qa&&params.get('motion')==='reduce'?{matches:true,addEventListener(){}}:systemReduced;
@@ -29,13 +32,14 @@ const dialog=document.querySelector('#mensaje-demo');
 document.querySelector('#prepared-message').textContent=whatsappMessage;
 const cta=document.querySelector('.cta');
 const contact=contactFrom(commercial),ctaUrl=contact.url;
+if(contact.channel==='booking')document.querySelector('#request-answer').textContent='Podés abrir la agenda autorizada para consultar disponibilidad. La clínica gestiona la confirmación de la valoración.';
 cta.querySelector('.cta-label').textContent=commercial.buttonTitle;
 document.title=commercial.clinicName+' — Valoración odontológica';
 if(commercial.clinicName!=='VÉLORA DENTAL')document.querySelectorAll('.identity').forEach(el=>{el.textContent=commercial.clinicName;el.setAttribute('aria-label',commercial.clinicName+', inicio');});
 if(ctaUrl)document.querySelector('footer>p').hidden=true;
 if(ctaUrl){
   cta.href=ctaUrl;
-  cta.querySelector('.cta-label').textContent='SOLICITAR VALORACIÓN POR WHATSAPP';
+  cta.querySelector('.cta-label').textContent=commercial.buttonTitle;
   document.querySelector('#contact-state').textContent='Se abrirá WhatsApp para enviar tu consulta. La solicitud no confirma un turno.';
 }
 else{
@@ -43,10 +47,10 @@ else{
   on(cta,'click',e=>{e.preventDefault();dialog.showModal();});
 }
 on(cta,'click',()=>{
-  measure('whatsapp_cta_click',contact.mode);
-  if(ctaUrl)measure('whatsapp_open_attempt',contact.mode);
+  measure(contact.channel==='booking'?'booking_cta_click':'whatsapp_cta_click',contact.mode);
+  if(ctaUrl)measure(contact.channel==='booking'?'booking_open_attempt':'whatsapp_open_attempt',contact.mode);
 });
-document.querySelector('#contact-state').textContent=ctaUrl?'Se abrirá WhatsApp para consultar disponibilidad. No se reserva automáticamente un turno.':'Podés ver y copiar el mensaje antes de consultar. No se enviará automáticamente.';
+document.querySelector('#contact-state').textContent=ctaUrl?(contact.channel==='booking'?'Se abrirá la agenda autorizada. La disponibilidad y confirmación dependen de la clínica.':'Se abrirá WhatsApp para consultar disponibilidad. No se reserva automáticamente un turno.'):'Podés ver y copiar el mensaje antes de consultar. No se enviará automáticamente.';
 const contactViews=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting)){measure('contact_section_view',contact.mode);contactViews.disconnect();}},{threshold:.3});
 contactViews.observe(document.querySelector('#consulta'));
 on(document.querySelector('.dialog-close'),'click',()=>dialog.close());
@@ -55,7 +59,7 @@ on(document.querySelector('#copy-message'),'click',async()=>{
   try{await navigator.clipboard.writeText(whatsappMessage);document.querySelector('.copy-status').textContent='Mensaje copiado. No se envió a ningún contacto.';}
   catch{document.querySelector('.copy-status').textContent='Seleccioná el mensaje para copiarlo manualmente.';}
 });
-for(const [key,label] of [['environment','Ambiente'],['team','Equipo profesional'],['location','Ubicación'],['hours','Horarios'],['contact','Contacto']]){
+for(const [key,label] of [['environment','Ambiente'],['team','Equipo profesional'],['credentials','Matrícula y credenciales'],['location','Ubicación'],['hours','Horarios'],['contact','Contacto'],['privacy','Privacidad']]){
   if(!clinicInformation[key])continue;
   const dl=document.createElement('dl'),dt=document.createElement('dt'),dd=document.createElement('dd');
   dt.textContent=label;dd.textContent=clinicInformation[key];dl.append(dt,dd);document.querySelector('.clinic-info').append(dl);
@@ -297,6 +301,7 @@ function disposeModel(root){
   textures.forEach(t=>t.dispose());materials.forEach(m=>m.dispose());geometries.forEach(g=>g.dispose());
 }
 function cleanup(){
+  stopLab();
   disposed=true;abort.abort();cancelAnimationFrame(frame);observer?.disconnect();reveals.disconnect();educationViews.disconnect();contactViews.disconnect();video.destroy();anatomy.destroy();
   if(model)disposeModel(model);environment?.dispose();renderer?.dispose();
 }
