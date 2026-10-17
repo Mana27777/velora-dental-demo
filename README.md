@@ -15,7 +15,7 @@ GitHub Pages usa .github/workflows/deploy.yml. Cada actualización de main insta
 
 Desde Codex: solicitar actualizar este repositorio con los cambios de 04-WEB, conservando la lista de archivos publicables; comprobar build y workflow antes de declarar éxito. No subir node_modules, dist, archivos .env, capturas, referencias de terceros ni informes internos.
 
-Los originales del proyecto se conservan fuera de este repositorio. El MP4 en public/media y el mapa animation-map.json permiten compilar sin carpetas privadas externas.
+Los originales del proyecto se conservan fuera de este repositorio. Los MP4 optimizados en public/media y el mapa animation-map.json permiten compilar sin carpetas privadas externas. En móvil el video se reproduce silenciosamente mientras el hero es visible; escritorio utiliza scrubbing con fotogramas clave frecuentes. La anatomía usa flujo natural sin pista vacía y el hero sincroniza su pin con la altura realmente renderizada.
 
 ## Recursos y atribuciones
 Fredoka y Nunito: licencias SIL Open Font License incluidas en public/fonts. Dependencias gratuitas con sus licencias correspondientes. Los recursos visuales fueron aportados y declarados como generados por el titular del proyecto; esto no constituye una comprobación independiente del plan/licencia de la herramienta generadora. No se concede aquí una licencia de redistribución general del modelo o fotografías. Ver ASSET-NOTICES.md.

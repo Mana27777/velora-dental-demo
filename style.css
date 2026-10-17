@@ -6,7 +6,9 @@
 header{position:absolute;inset:0 0 auto;z-index:6;display:flex;justify-content:space-between;align-items:center;padding:20px 6vw;gap:16px}
 .identity{font:600 26px/.95 Fredoka,sans-serif;letter-spacing:.05em;text-decoration:none}.identity span{display:block;font:800 9px/1 Nunito,sans-serif;letter-spacing:.38em;margin-top:8px}
 nav{display:flex;gap:25px;font-weight:800;font-size:13px}nav a{display:flex;align-items:center;min-height:44px;text-decoration:none}header nav{display:none}.mobile-nav{display:flex;align-items:center;gap:12px;min-height:44px;text-decoration:none;font-size:12px;font-weight:800}
-.scroll-stage{height:600svh}.hero{position:sticky;top:0;height:100svh;min-height:540px;overflow:hidden;isolation:isolate;background:var(--cream)}
+:root{--scene-height:100vh}
+@supports(height:100dvh){:root{--scene-height:100dvh}}
+.scroll-stage{height:500vh;height:calc(var(--scene-height) + 400svh)}.hero{position:sticky;top:0;height:var(--scene-height);min-height:0;overflow:hidden;isolation:isolate;background:var(--cream)}
 .hero-video{position:absolute;inset:0;z-index:0;pointer-events:none;background:url('/images/recepcion-velora.webp') center/cover}
 .hero-video video{width:100%;height:100%;object-fit:cover;filter:none;opacity:0;display:block}
 .hero-video.video-ready video{opacity:1}
@@ -43,7 +45,7 @@ footer{padding:38px 6vw 25px;display:flex;flex-wrap:wrap;align-items:center;just
 dialog{background:var(--cream);color:var(--ink);border:1px solid #77564a45;border-radius:20px;padding:45px 26px 25px;width:min(92vw,520px);max-height:90svh;box-shadow:0 20px 70px #211b1a40}dialog::backdrop{background:#211b1a88}dialog h2{font-size:40px;margin:0 0 24px}dialog>p{font-size:14px;line-height:1.6}dialog blockquote{margin:22px 0;padding:20px;background:var(--pink);border-radius:10px;font-size:15px;line-height:1.6}.dialog-close{position:absolute;right:10px;top:10px;min-width:44px;min-height:44px;font-size:27px;border:0;background:transparent;cursor:pointer;color:var(--brown)}#copy-message{min-height:48px;padding:12px 22px;font-weight:900;color:var(--cream);background:var(--ink);border:0;border-radius:30px;cursor:pointer}.copy-status{margin:15px 0 0;min-height:22px}
 .reveal{opacity:1}.motion-ready .reveal{opacity:0;transform:translateY(18px);transition:opacity .55s,transform .55s}.motion-ready .reveal.visible{opacity:1;transform:none}
 @media(min-width:701px){
-header{padding:26px 5vw}.identity{font-size:30px}header nav{display:flex}.mobile-nav{display:none}.scroll-stage{height:620svh}
+header{padding:26px 5vw}.identity{font-size:30px}header nav{display:flex}.mobile-nav{display:none}.scroll-stage{height:calc(var(--scene-height) + 480svh)}
 .hero-video:after{background:linear-gradient(90deg,rgba(246,240,232,.83),rgba(246,240,232,.25) 34%,transparent 48%,rgba(246,240,232,.18) 66%,rgba(246,240,232,.7)),linear-gradient(180deg,#f6f0e86b,transparent 22%,transparent 85%,#f6f0e847)}
 .chapter{top:31%;left:5vw;right:auto;width:30%;max-width:420px}.chapter.right{left:auto;right:5vw}
 .chapter h1,.chapter h2{font-size:clamp(39px,4vw,64px);max-width:none;line-height:1.03}.chapter .clinical-note{font-size:15px;line-height:1.6;max-width:340px;margin-top:25px}
@@ -77,4 +79,16 @@ header nav{font-size:12px;gap:22px}
 @media(min-width:701px){.mobile-links{display:none}.chapter .service-label{font-size:13px;margin-bottom:14px}.education{grid-template-columns:1.2fr .8fr;align-items:center;gap:7vw;padding-block:95px;border-radius:55px 55px 0 0}.education h2{font-size:clamp(39px,4.2vw,64px)}.anatomy-slot{min-height:350px;border-radius:200px 200px 8px 8px}.anatomy-slot>p{font-size:clamp(27px,2.7vw,40px)}.process .section-heading{display:grid;grid-template-columns:1.2fr .8fr;gap:0 6vw}.process .section-heading .eyebrow{grid-column:1/-1}.process .section-heading .section-description{align-self:end;margin:0;max-width:430px}.valuation-room{max-width:720px;margin:50px 0 40px auto}.valuation-room img{height:330px}.process .steps h3{font-size:clamp(25px,2.5vw,37px)}}
 @media(min-width:701px) and (max-width:1050px){header nav{gap:14px;font-size:11px}.education{gap:30px}.education h2{font-size:38px}.process .section-heading{grid-template-columns:1fr}.process .section-heading .section-description{margin-top:25px;max-width:600px}}
 @media(max-width:380px){.mobile-links{gap:9px}.chapter .service-label{font-size:11px}.section-description{font-size:15px;line-height:1.7}}
+
+/* Compact mobile rhythm; the pinned scene height follows the actually visible viewport. */
+@media(max-width:700px){
+ .information{padding:48px 6vw}
+ .education.information{padding-top:36px}
+ .faq{gap:26px}
+ .steps{margin:28px 0}
+ .steps li{padding:23px 0}
+ .valuation-room{margin:26px 0}
+ .final-cta{padding-top:52px;padding-bottom:calc(56px + env(safe-area-inset-bottom,0px))}
+ footer{padding-bottom:calc(25px + env(safe-area-inset-bottom,0px))}
+}
 

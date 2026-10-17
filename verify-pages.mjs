@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 const base='/velora-dental-demo/';
 const html=fs.readFileSync('dist/index.html','utf8');
 assert(html.includes(base+'assets/'),'HTML sin base de Pages');
-for(const file of ['models/velora-implante-v1.glb','media/consultorio-scroll.mp4','images/recepcion-velora.webp','images/gabinete-velora.webp','illustrations/anatomia-implante.svg','fonts/fredoka-variable.ttf','fonts/nunito-variable.ttf']){
+for(const file of ['models/velora-implante-v1.glb','media/consultorio-desktop.mp4','media/consultorio-mobile.mp4','images/recepcion-velora.webp','images/gabinete-velora.webp','illustrations/anatomia-implante.svg','fonts/fredoka-variable.ttf','fonts/nunito-variable.ttf']){
  assert(fs.statSync(path.join('dist',file)).size>0,'Recurso ausente: '+file);
 }
 for(const name of fs.readdirSync('dist/assets')){

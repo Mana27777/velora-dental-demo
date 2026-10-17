@@ -1,6 +1,7 @@
 import map from './animation-map.json';
 export const animationMap=map;
 export const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
+export const narrativeProgress=(scroll,start,trackHeight,sceneHeight)=>clamp((scroll-start)/Math.max(1,trackHeight-sceneHeight));
 export const smooth=t=>{t=clamp(t);return t*t*(3-2*t);};
 export function poseAt(progress){
   const keys=map.timeline;let i=0;while(i<keys.length-2&&progress>keys[i+1].p)i++;

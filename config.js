@@ -14,6 +14,6 @@ export const clinicInformation = {
   environment: '', team: '', location: '', hours: '', contact: '',
 };
 const asset=(path)=>(import.meta.env?.BASE_URL??'/')+path;
-export const clinicVideo = { src: asset('media/consultorio-scroll.mp4'), poster: asset('images/recepcion-velora.webp') };
+export const clinicVideo = { src: asset('media/consultorio-desktop.mp4'), mobileSrc: asset('media/consultorio-mobile.mp4'), playbackMode: 'auto', poster: asset('images/recepcion-velora.webp') };
 // Slot educativo reservado. No se carga ni se representa anatomía sin un recurso aprobado.
 export const anatomyResource = { src: '', approved: false };
